@@ -7,6 +7,12 @@ public interface ExtendedBiFunction<T, U, R>extends BiFunction<T, U, R> {
 
     default Function<U, R> curry1(T t) {
         System.out.println("Parameter passed to the main function is "+t);
+        //Its line return new Function(){
+        //      @Override
+        //      R apply(T t){
+        //         return t;
+        //    }
+        // }
         return (U u) -> {
             System.out.println("Passing t: "+t+" and u :"+u+" to BiFunction's R apply(T t, U u)");
             return apply(t, u);

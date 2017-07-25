@@ -13,11 +13,13 @@ public class Converter {
 
     @Test
     public void testCurrying(){
-        double result = applyCurrying((aDouble, aDouble2) -> {
-            return (aDouble*aDouble2);
+        double result = applyCurrying((t, u) -> {
+            return (t*u);
         });
 
         System.out.println(result);
         assert result == 16.09;
     }
+
+    //Flow of this
 }
