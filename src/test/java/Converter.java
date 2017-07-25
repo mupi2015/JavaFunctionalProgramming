@@ -6,10 +6,18 @@ import java.util.function.IntFunction;
 
 public class Converter {
 
+    private Double simpleCurrying(DoubleFunction<DoubleFunction> doubleFunction){
+
+        //DoubleFunction<DoubleFunction> curriedMul = a -> b -> a * b;
+        //Double result = (Double) curriedMul.apply(1.609).apply(10.0);
+        return (Double) doubleFunction.apply(1.609).apply(10.0);
+    }
+
     @Test
-    public void simpleCurrying(){
-        DoubleFunction<DoubleFunction> curriedMul = a -> b -> a * b;
-        Double result = (Double) curriedMul.apply(1.609).apply(10.0);
+    public void simpleCurryingTest(){
+        Double result = simpleCurrying((a) -> (b) -> {
+            return a * b;
+        });
         assert result == 16.09;
     }
 
@@ -18,7 +26,7 @@ public class Converter {
         //Function<Double, Double> mi2kmConverter = biFunction.curry1(1.609);
         //double tenMilesInKm = mi2kmConverter.apply(10.0);
         return biFunction.curry1(1.609).apply(10.0);
-    }
+}
 
     @Test
     public void testCurrying(){
