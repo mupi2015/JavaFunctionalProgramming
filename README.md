@@ -1,0 +1,3 @@
+# JavaFunctionalProgramming
+
+testing functional
