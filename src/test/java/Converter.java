@@ -1,8 +1,17 @@
 import org.junit.Test;
 
+import java.util.function.DoubleFunction;
 import java.util.function.Function;
+import java.util.function.IntFunction;
 
 public class Converter {
+
+    @Test
+    public void simpleCurrying(){
+        DoubleFunction<DoubleFunction> curriedMul = a -> b -> a * b;
+        Double result = (Double) curriedMul.apply(1.609).apply(10.0);
+        assert result == 16.09;
+    }
 
     private Double applyCurryingCase1(ExtendedBiFunction<Double, Double, Double> biFunction){
 
@@ -39,7 +48,7 @@ public class Converter {
 
     private Double applyCurryingCase3(ExtendedBiFunction<Double, Double, Double> biFunction){
         //C = (F - 32) * 5/9 => F * 5/9 - 32*5/9
-        return biFunction.curry1(.555)
+        return biFunction.curry1(.554)
                 .andThen(n -> n - (32*5/9))
                 .apply(212.0);
     }
@@ -51,7 +60,7 @@ public class Converter {
         });
 
         System.out.println(result);
-        //assert result==100.0;
+        assert result >= 100.0 && 101 >result;
     }
 
 
