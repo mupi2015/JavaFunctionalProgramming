@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.function.DoubleFunction;
 import java.util.function.Function;
 import java.util.function.IntFunction;
@@ -24,8 +25,11 @@ public class Converter {
 
 
 
+
     @Test
     public void testCurrying(){
+        //Passing ExtendedBiFunction to the function
+
         double result = applyCurryingCase1((t, u) -> {
             return (t*u);
         });
@@ -86,18 +90,10 @@ public class Converter {
     }
 
     @Test
-    public void curryingPredicateTest(){
-
-        assert caseForCurryingPredicateTest().a
-
-
-
-    }
+    public void curryingPredicateTest(){}
 
     private Predicate<String> caseForCurryingPredicateTest(){
-
         return (t)->t.contains("abc");
-
     }
 
 
