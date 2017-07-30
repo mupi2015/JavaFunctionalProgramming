@@ -52,18 +52,55 @@ public class CompositionTest {
         System.out.println(compledFunction.compose(p->p+" COMPOSE ").apply("Hello").apply("World"));
     }
 
-
     @Test
-    public void composeAndAndThenTestWithImplementation(){
+    public void composeAndAndThenTestWithImplementationExpanded(){
         flatFunction = new CustomFunction<String, String>() {
             @Override
             public String apply(String s) {
+                System.out.println("***MAIN FUNCTION***");
                 return s.toUpperCase();
             }
         };
 
-        System.out.println(flatFunction.compose(s->s+" compose ").apply("Hello "));
-        System.out.println(flatFunction.andThen(s->s+" andThen ").apply("Hello "));
+        System.out.println(flatFunction.compose(new CustomFunction<Object, String>() {
+            @Override
+            public String apply(Object s) {
+                System.out.println("***CALL1***");
+                return s + " compose ";
+            }
+        }).apply("Hello "));
+
+        //System.out.println(flatFunction.andThen(s->s+" andThen ").apply("Hello "));
+
+
+    }
+
+
+    @Test
+    public void composeAndAndThenTestWithImplementation(){
+        flatFunction = s -> {
+            System.out.println("***MAIN FUNCTION***"+s);
+            return s.toUpperCase();
+        };
+
+        String ret = flatFunction.compose(s -> {
+            System.out.println("***CALL1***");
+            return s + " compose ";
+        }).apply("Hello ");
+
+        System.out.println(ret);
+
+        //System.out.println(flatFunction.andThen(s->s+" andThen ").apply("Hello "));
+
+
+    }
+
+    @Test
+    public void templatingExample(){
+
+        Function<String,String> template = arg->arg.toUpperCase();
+
+        System.out.println(template.apply("i am don 10q"));
 
 
     }

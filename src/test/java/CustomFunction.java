@@ -11,6 +11,7 @@ public interface CustomFunction<T,R>{
         return new CustomFunction<V, R>() {
             @Override
             public R apply(V v) {
+                System.out.println("***CALL2***"+v);
                 return CustomFunction.this.apply(before.apply(v));
             }
         };
