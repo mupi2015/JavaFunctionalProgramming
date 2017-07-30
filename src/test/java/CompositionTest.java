@@ -90,6 +90,8 @@ public class CompositionTest {
 
         System.out.println(ret);
 
+        assert ret.trim().equals("HELLO  COMPOSE");
+
         //System.out.println(flatFunction.andThen(s->s+" andThen ").apply("Hello "));
 
 
