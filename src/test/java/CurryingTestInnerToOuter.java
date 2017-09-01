@@ -4,6 +4,22 @@ import java.util.function.Function;
 
 public class CurryingTestInnerToOuter {
 
+    @Test
+    public void testFunctionalProgrammingInStringReplacement(){
+
+        Function<String,Function<String,Function<String,String>>> function = parameter ->
+                (Function<String, Function<String, String>>) candidate ->
+                        with ->
+                                parameter.replaceAll(candidate,with);
+        String outcome=function
+                .apply("MyTestWorld")
+                .apply("Test").andThen(c->c.replaceAll("M","z"))
+                .apply("Hello");
+        System.out.println(outcome);
+        assert outcome.equals("MyHelloWorld");
+
+    }
+
 
     @Test
     public void curryingTestOneInDetails(){

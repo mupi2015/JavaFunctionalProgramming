@@ -19,6 +19,7 @@ public class CurryingTestOuterToInner {
                 };
             }
         };
+        //Calling From Outer to Inner
         System.out.println(method1.apply(1.5).apply(1.5));
     }
 
